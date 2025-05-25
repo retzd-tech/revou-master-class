@@ -1,7 +1,7 @@
 :root {
   --primary: #6a0dad;     /* Ungu */
   --accent: #ffd700;      /* Kuning */
-  --bg: #ffffff;          /* Putih */
+  --bg: #f5f9df;          /* Putih */
   --text: #333333;
 }
 
@@ -76,7 +76,7 @@ button:hover {
   padding: 15px;
   border: 2px dashed var(--accent);
   border-radius: 8px;
-  background-color: #fffbea;
+  background-color: #ece8d5;
   color: #5a4c00;
   font-size: 15px;
 
