@@ -1,28 +1,46 @@
-document.getElementById("pesanBtn").addEventListener("click", function () {
-  const nama = document.getElementById("nama").value.trim();
-  const produk = document.getElementById("produk").value;
-  const output = document.getElementById("output");
+const form = document.getElementById("form");
+const namaInput = document.getElementById("nama");
+const produkInput = document.getElementById("produk");
+const output = document.getElementById("output");
 
-  if (!nama) {
-    alert("Nama wajib diisi!");
+form.addEventListener("submit", async function (e) {
+  e.preventDefault(); // Hindari reload
+
+  const nama = namaInput.value.trim();
+  const produk = produkInput.value;
+
+  if (!nama || !produk) {
+    output.innerHTML = `
+    <strong>Semua field wajib diisi!</strong>
+  `;
+  output.style.display = "block";
     return;
   }
 
+  // Tampilkan hasil
   output.innerHTML = `
     <strong>Terima kasih, ${nama}!</strong><br />
     Kamu telah memesan produk: <strong>${produk}</strong>.<br />
     Pesananmu sedang diproses... ⏳
   `;
+  output.style.display = "block";
 
-  output.style.display = "block"; // 👉 Tampilkan output box
-
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    body: JSON.stringify({ nama, produk }),
-    headers: { "Content-type": "application/json; charset=UTF-8" }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Data berhasil dikirim ke server simulasi:", data);
+  // Kirim ke server dummy dengan error handling
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify({ nama, produk }),
+      headers: { "Content-type": "application/json; charset=UTF-8" }
     });
+
+    if (!response.ok) {
+      throw new Error("Gagal mengirim data ke server");
+    }
+
+    const data = await response.json();
+    console.log("Data berhasil dikirim:", data);
+  } catch (error) {
+    alert("Terjadi kesalahan saat mengirim data. Coba lagi nanti.");
+    console.error(error);
+  }
 });
