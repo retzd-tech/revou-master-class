@@ -40,7 +40,10 @@ form.addEventListener("submit", async function (e) {
     const data = await response.json();
     console.log("Data berhasil dikirim:", data);
   } catch (error) {
-    alert("Terjadi kesalahan saat mengirim data. Coba lagi nanti.");
+    output.innerHTML = `
+    <strong>Terjadi kesalahan saat mengirim data. Coba lagi nanti.</strong>
+  `;
+    output.style.display = "block";
     console.error(error);
   }
 });
