@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revou Master Class</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #00c6ff;
+      background-image: linear-gradient(90deg, #0072ff, #00c6ff);
+      color: white;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 198, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <h1>Revou Master Class</h1>
+  <div class="button-group">
+    <button onclick="goToPage('calculator/index.html')">Calculator</button>
+    <button onclick="goToPage('shop/index.html')">Shop</button>
+  </div>
+
+  <script>
+    function goToPage(destination) {
+      // Redirect to the destination page
+      window.location.href = destination;
+    }
+  </script>
+</body>
+</html>
