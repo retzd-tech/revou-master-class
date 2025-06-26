@@ -9,11 +9,25 @@ form.addEventListener("submit", async function (e) {
   const nama = namaInput.value.trim();
   const produk = produkInput.value;
 
+  const namaRegex = /^[A-Za-z\s]+$/;
+
+  if (!nama || !produk) {
+    output.innerHTML = `<strong>Semua field wajib diisi!</strong>`;
+    output.style.display = "block";
+    return;
+  }
+
+  if (!namaRegex.test(nama)) {
+    output.innerHTML = `<strong>Nama hanya boleh mengandung huruf dan spasi (tanpa simbol atau angka).</strong>`;
+    output.style.display = "block";
+    return;
+  }
+
   if (!nama || !produk) {
     output.innerHTML = `
     <strong>Semua field wajib diisi!</strong>
   `;
-  output.style.display = "block";
+    output.style.display = "block";
     return;
   }
 
@@ -30,7 +44,7 @@ form.addEventListener("submit", async function (e) {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
       body: JSON.stringify({ nama, produk }),
-      headers: { "Content-type": "application/json; charset=UTF-8" }
+      headers: { "Content-type": "application/json; charset=UTF-8" },
     });
 
     if (!response.ok) {
